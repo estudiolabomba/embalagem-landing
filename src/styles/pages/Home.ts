@@ -13,12 +13,28 @@ export const Container = styled.div`
   header {
     nav {
       margin-top: 56px;
+
+      @media (max-width: 540px) {
+        text-align: center;
+      }
     }
 
     .full-banner {
       display: flex;
       justify-content: space-between;
       gap: 6.5rem;
+
+      @media (max-width: 768px) {
+        gap: 4rem;
+      }
+
+      @media (max-width: 540px) {
+        gap: 2rem;
+      }
+
+      @media (max-width: 414px) {
+        flex-direction: column;
+      }
 
       .call {
         display: flex;
@@ -31,6 +47,46 @@ export const Container = styled.div`
           z-index: 1;
           max-width: 25.75rem;
         }
+
+        @media (max-width: 768px) {
+          img {
+            max-width: 88px;
+          }
+
+          h1 {
+            max-width: 29rem;
+          }
+        }
+
+        @media (max-width: 540px) {
+          margin-top: 56px;
+
+          img {
+            max-width: 80px;
+          }
+
+          h1 {
+            width: 10rem;
+          }
+        }
+
+        @media (max-width: 414px) {
+          img {
+            max-width: 88px;
+          }
+
+          h1 {
+            width: 100%;
+            font-size: 48px;
+            line-height: 100%;
+          }
+        }
+
+        @media (max-width: 375px) {
+          h1 {
+            font-size: 40px;
+          }
+        }
       }
     }
 
@@ -40,6 +96,28 @@ export const Container = styled.div`
       justify-content: space-between;
       max-width: 910px;
       margin: 56px auto 0;
+
+      @media (max-width: 1024px) {
+        max-width: 768px;
+      }
+
+      @media (max-width: 768px) {
+        max-width: 540px;
+
+        img {
+          max-width: 64px !important;
+        }
+      }
+
+      @media (max-width: 540px) {
+        max-width: 100%;
+      }
+
+      @media (max-width: 540px) {
+        img {
+          max-width: 48px !important;
+        }
+      }
     }
   }
 
@@ -49,6 +127,14 @@ export const Container = styled.div`
       align-items: center;
       justify-content: space-between;
       margin-top: 80px;
+
+      @media (max-width: 768px) {
+        gap: 56px;
+      }
+
+      @media (max-width: 540px) {
+        flex-direction: column;
+      }
 
       .stats {
         display: flex;
@@ -61,11 +147,36 @@ export const Container = styled.div`
           gap: 48px;
           margin-left: 104px;
 
+          @media (max-width: 1024px) {
+            margin-left: 40px;
+          }
+
+          @media (max-width: 540px) {
+            gap: 24px;
+
+            img {
+              width: 11rem !important;
+            }
+          }
+
+          @media (max-width: 540px) {
+            margin-left: 0px;
+          }
+
           p {
             max-width: 312px;
             font-size: 20px;
             font-weight: bold;
             font-style: italic;
+
+            @media (max-width: 768px) {
+              max-width: 200px;
+              font-size: 16px;
+            }
+
+            @media (max-width: 540px) {
+              max-width: 100%;
+            }
 
             span {
               color: ${({ theme }) => theme.colors.magenta};
@@ -85,6 +196,25 @@ export const Container = styled.div`
           transform: translate(-50%, -50%);
           text-align: center;
         }
+
+        @media (max-width: 768px) {
+          img {
+            max-width: 280px;
+          }
+        }
+
+        @media (max-width: 540px) {
+          img {
+            max-width: 80%;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 375px) {
+          h2 {
+            font-size: 32px;
+          }
+        }
       }
     }
 
@@ -92,6 +222,12 @@ export const Container = styled.div`
       margin-top: 80px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+
+      @media (max-width: 540px) {
+        flex-direction: column-reverse;
+        margin-top: 0;
+      }
 
       form {
         background-color: ${({ theme }) => theme.colors.amarelo};
@@ -104,6 +240,11 @@ export const Container = styled.div`
         flex-direction: column;
         align-content: center;
         position: relative;
+
+        @media (max-width: 768px) {
+          max-width: 400px;
+          padding: 32px;
+        }
 
         &:before {
           content: url('/eye.svg');
@@ -183,6 +324,12 @@ export const Container = styled.div`
           flex-direction: column;
           margin-top: 72px;
 
+          @media (max-width: 540px) {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 32px;
+          }
+
           .item {
             display: flex;
             flex-direction: column;
@@ -190,12 +337,21 @@ export const Container = styled.div`
 
             & + .item {
               margin-top: 80px;
+
+              @media (max-width: 540px) {
+                margin-top: 0;
+              }
             }
 
             h4 {
               line-height: 100%;
               font-size: 32px;
               margin-top: 24px;
+
+              @media (max-width: 768px) {
+                font-size: 24px;
+                line-height: 120%;
+              }
             }
           }
         }
@@ -205,9 +361,18 @@ export const Container = styled.div`
     &.testimonials {
       margin-top: 140px;
 
+      @media (max-width: 768px) {
+        margin-top: 104px;
+      }
+
       h2 {
         text-align: center;
         line-height: 130%;
+
+        @media (max-width: 414px) {
+          margin-top: 104px;
+          font-size: 1.5rem;
+        }
       }
 
       .content {
@@ -217,28 +382,73 @@ export const Container = styled.div`
         gap: 96px;
         justify-content: space-between;
 
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
         .item {
           display: flex;
 
+          @media (max-width: 414px) {
+            flex-direction: column-reverse;
+          }
+
           .person {
             margin-right: 64px;
-            flex: 1;
+
+            @media (max-width: 1024px) {
+              margin-right: 40px;
+            }
+
+            @media (max-width: 768px) {
+              margin-right: 32px;
+            }
+
+            @media (max-width: 414px) {
+              margin-right: 0px;
+              display: flex;
+              align-items: center;
+              margin-top: 32px;
+
+              > div {
+                margin-left: 24px;
+              }
+            }
 
             img {
               border-radius: 50%;
               margin-bottom: 16px;
+
+              @media (max-width: 414px) {
+                width: 72px !important;
+              }
             }
 
             span {
               display: block;
               font-size: 14px;
+
+              @media (max-width: 768px) {
+                display: inline-block;
+                font-size: 16px;
+              }
+
+              @media (max-width: 414px) {
+                display: block;
+                font-weight: bold;
+              }
             }
 
             small {
-              display: block;
+              display: inline-block;
               font-size: 12px;
               color: ${({ theme }) => theme.colors.gray_light};
               line-height: 120%;
+
+              @media (max-width: 768px) {
+                display: block;
+                font-size: 14px;
+              }
             }
           }
 
@@ -247,18 +457,40 @@ export const Container = styled.div`
             width: 100%;
             position: relative;
 
+            @media (max-width: 1024px) {
+              max-width: 300px;
+            }
+
             &:before {
               content: url('/testimonial-detail.svg');
               position: absolute;
               top: -2rem;
               left: -3.1rem;
               z-index: -1;
+
+              @media (max-width: 1024px) {
+                left: -1.5rem;
+                top: -3rem;
+              }
+
+              @media (max-width: 768px) {
+                top: -2rem;
+                left: -3.5rem;
+              }
             }
 
             p {
               font-size: 15px;
               line-height: 150%;
               text-align: justify;
+            }
+
+            @media (max-width: 768px) {
+              max-width: 100%;
+
+              p {
+                font-size: 18px;
+              }
             }
           }
         }
@@ -303,6 +535,10 @@ export const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 72px;
+
+    @media (max-width: 540px) {
+      grid-template-columns: 1fr;
+    }
 
     img {
       width: 100%;

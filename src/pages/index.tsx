@@ -37,14 +37,14 @@ const Home: NextPage = () => {
 
           <div className="full-banner">
             <div className="call">
-              <Image
+              <img
                 src="/dolar-symbol.svg"
                 alt="Venda mais com Design de Embalagem"
-                width={122}
-                height={236}
               />
 
-              <h1 className="text-6xl">Venda mais com Design de Embalagem</h1>
+              <h1 className="text-2xl md:text-4xl xl:text-6xl lg:text-5xl">
+                Venda mais com Design de Embalagem
+              </h1>
             </div>
 
             <Image
@@ -127,7 +127,7 @@ const Home: NextPage = () => {
           <div className="phrase">
             <img src="/lamp.png" alt="Ilustração de Lâmpada" />
 
-            <h2 className="text-4xl">
+            <h2 className="text-4xl lg:text-4xl md:text-2xl">
               Transformamos <br /> <span> Essência</span> e
               <span> Propósito</span> <br />
               em valor para marcas
@@ -237,7 +237,7 @@ const Home: NextPage = () => {
           </form>
 
           <div className="content">
-            <h3 className="text-4xl">
+            <h3 className="text-3xl md:text-2xl lg:text-4xl">
               Nosso Design vai ajudar <br /> a alavancar suas
               <span> Vendas</span>
             </h3>
@@ -288,11 +288,13 @@ const Home: NextPage = () => {
                   height={112}
                 />
 
-                <span>Lucas Redigolo,</span>
-                <small>
-                  Diretor Comercial, <br />
-                  São Camilo Massas.
-                </small>
+                <div>
+                  <span>Lucas Redigolo,</span>
+                  <small>
+                    Diretor Comercial, <br />
+                    São Camilo Massas.
+                  </small>
+                </div>
               </div>
 
               <div className="text">
@@ -320,11 +322,13 @@ const Home: NextPage = () => {
                   height={112}
                 />
 
-                <span>Alex Severnini,</span>
-                <small>
-                  Buyer, <br />
-                  Triunfo Foods.
-                </small>
+                <div>
+                  <span>Alex Severnini,</span>
+                  <small>
+                    Buyer, <br />
+                    Triunfo Foods.
+                  </small>
+                </div>
               </div>
 
               <div className="text">
