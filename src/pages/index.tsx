@@ -54,6 +54,12 @@ const Home: NextPage = () => {
       })
 
       toast('Iremos entrar em contato com você em breve!', { type: 'success' })
+
+      setName('')
+      setEnterprise('')
+      setEnterpriseSize('Pequena')
+      setPhone('')
+      setEmail('')
     } finally {
       setFormSending(false)
     }
