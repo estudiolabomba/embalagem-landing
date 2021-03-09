@@ -275,6 +275,7 @@ export const Container = styled.div`
             background-color: ${({ theme }) => theme.colors.black};
             padding: 16px 24px;
             border-radius: 4px;
+            color: #fff;
 
             &::placeholder {
               color: ${({ theme }) => theme.colors.gray};

@@ -1,9 +1,11 @@
 import React from 'react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
+import { ToastContainer } from 'react-toastify'
 import Head from 'next/head'
 import 'tailwindcss/tailwind.css'
 import '@styles/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
@@ -69,6 +71,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
+
+        <ToastContainer position="bottom-center" />
         <GlobalStyle />
       </ThemeProvider>
     </>

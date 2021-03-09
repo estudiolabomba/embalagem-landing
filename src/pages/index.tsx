@@ -1,8 +1,12 @@
 import { NextPage } from 'next'
 import React, { FormEvent, useEffect, useState } from 'react'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+
+import { Email } from 'lib/smtp'
+import pipedrive from 'services/pipedrive'
 
 import { Container, Wrapper } from '@styles/pages/Home'
 
@@ -13,10 +17,46 @@ const Home: NextPage = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
-  const handleSubmitForm = (e: FormEvent) => {
-    e.preventDefault()
+  const [formSending, setFormSending] = useState(false)
 
-    console.log({ name, enterprise, enterpriseSize, phone, email })
+  const handleSubmitForm = async (e: FormEvent) => {
+    try {
+      e.preventDefault()
+      setFormSending(true)
+
+      toast('Enviando...', { type: 'info' })
+
+      await Email.send({
+        Host: 'mail.estudiolabomba.com',
+        Username: 'contato@estudiolabomba.com',
+        Password: 'labomba13',
+        To: 'andre@estudiolabomba.com',
+        From: email,
+        Subject: `E-mail de Contato vindo de ${name}`,
+        Body: `Nome: ${name} <br/>
+              E-mail: ${email} <br/>
+              Telefone: ${phone} <br/>
+              Empresa: ${enterprise} <br/>
+              Porte da Empresa: ${enterpriseSize} <br/>
+              `
+      })
+
+      const person = await pipedrive.post('persons', {
+        name,
+        email: [email],
+        phone: [phone]
+      })
+
+      await pipedrive.post('leads', {
+        title: `[Landing/Embalagem] ${name}`,
+        person_id: person.data.data.id,
+        owner_id: person.data.data.owner_id.id
+      })
+
+      toast('Iremos entrar em contato com você em breve!', { type: 'success' })
+    } finally {
+      setFormSending(false)
+    }
   }
 
   useEffect(() => {
@@ -163,7 +203,7 @@ const Home: NextPage = () => {
 
       <Container>
         <section className="call-form">
-          <form id="form" data-aos="fade-up">
+          <form id="form">
             <fieldset>
               <label htmlFor="name-input">Nome</label>
               <input
@@ -251,7 +291,7 @@ const Home: NextPage = () => {
             </fieldset>
 
             <button type="submit" onClick={handleSubmitForm}>
-              Quero essa Transformação
+              {formSending ? 'Enviando...' : 'Quero essa Transformação'}
             </button>
           </form>
 
