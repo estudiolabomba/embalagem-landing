@@ -280,6 +280,11 @@ export const Container = styled.div`
         border-radius: 4px;
         font-weight: bold;
         line-height: 1;
+        transition: all ease 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+        }
       }
     }
   }
