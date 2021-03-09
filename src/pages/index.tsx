@@ -20,7 +20,9 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    AOS.init()
+    AOS.init({
+      duration: 800
+    })
   }, [])
 
   return (
@@ -360,7 +362,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section className="cta" data-aos="fade-up" data-aos-delay="1000">
+        <section className="cta" data-aos="fade-up" data-aos-delay="800">
           <a href="#form">É isso que eu preciso!</a>
         </section>
 
