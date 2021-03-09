@@ -1,6 +1,8 @@
 import { NextPage } from 'next'
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import Image from 'next/image'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 import { Container, Wrapper } from '@styles/pages/Home'
 
@@ -16,6 +18,11 @@ const Home: NextPage = () => {
 
     console.log({ name, enterprise, enterpriseSize, phone, email })
   }
+
+  useEffect(() => {
+    AOS.init()
+  }, [])
+
   return (
     <Wrapper>
       <Container>
@@ -36,7 +43,7 @@ const Home: NextPage = () => {
           </nav>
 
           <div className="full-banner">
-            <div className="call">
+            <div className="call" data-aos="fade-right">
               <img
                 src="/dolar-symbol.svg"
                 alt="Venda mais com Design de Embalagem"
@@ -52,10 +59,16 @@ const Home: NextPage = () => {
               alt="Antes e Depois da Embalagem da São Camilo"
               width={594}
               height={435}
+              data-aos="fade-left"
+              data-aos-delay="500"
             />
           </div>
 
-          <div className="clients-logo">
+          <div
+            className="clients-logo"
+            data-aos="fade-up"
+            data-aos-delay="1000"
+          >
             <Image
               src="/triunfo-logo.svg"
               alt="Triunfo Foods"
@@ -95,7 +108,7 @@ const Home: NextPage = () => {
 
         <section className="market-data">
           <div className="stats">
-            <div>
+            <div data-aos="fade-up">
               <Image
                 src="/75-sales-percent.svg"
                 alt="75%"
@@ -109,7 +122,7 @@ const Home: NextPage = () => {
               </p>
             </div>
 
-            <div>
+            <div data-aos="fade-up" data-aos-delay="500">
               <Image
                 src="/81-sales-percent.svg"
                 alt="81%"
@@ -127,7 +140,11 @@ const Home: NextPage = () => {
           <div className="phrase">
             <img src="/lamp.png" alt="Ilustração de Lâmpada" />
 
-            <h2 className="text-4xl lg:text-4xl md:text-2xl">
+            <h2
+              className="text-4xl lg:text-4xl md:text-2xl"
+              data-aos="fade-left"
+              data-aos-delay="800"
+            >
               Transformamos <br /> <span> Essência</span> e
               <span> Propósito</span> <br />
               em valor para marcas
@@ -144,7 +161,7 @@ const Home: NextPage = () => {
 
       <Container>
         <section className="call-form">
-          <form id="form">
+          <form id="form" data-aos="fade-up">
             <fieldset>
               <label htmlFor="name-input">Nome</label>
               <input
@@ -237,13 +254,13 @@ const Home: NextPage = () => {
           </form>
 
           <div className="content">
-            <h3 className="text-3xl md:text-2xl lg:text-4xl">
+            <h3 className="text-3xl md:text-2xl lg:text-4xl" data-aos="fade-up">
               Nosso Design vai ajudar <br /> a alavancar suas
               <span> Vendas</span>
             </h3>
 
             <div className="items">
-              <div className="item">
+              <div className="item" data-aos="fade-up" data-aos-delay="500">
                 <Image
                   src="/strategy-icon.svg"
                   alt="Planejamento Estratégico"
@@ -256,7 +273,7 @@ const Home: NextPage = () => {
                 </h4>
               </div>
 
-              <div className="item">
+              <div className="item" data-aos="fade-up" data-aos-delay="800">
                 <Image
                   src="/ideia-icon.svg"
                   alt="Planejamento Estratégico"
@@ -279,7 +296,7 @@ const Home: NextPage = () => {
           </h2>
 
           <div className="content">
-            <div className="item">
+            <div className="item" data-aos="fade-up">
               <div className="person">
                 <Image
                   src="/lucas.jpeg"
@@ -313,7 +330,7 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className="item">
+            <div className="item" data-aos="fade-up" data-aos-delay="500">
               <div className="person">
                 <Image
                   src="/alex.jpeg"
@@ -343,7 +360,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section className="cta">
+        <section className="cta" data-aos="fade-up" data-aos-delay="1000">
           <a href="#form">É isso que eu preciso!</a>
         </section>
 
