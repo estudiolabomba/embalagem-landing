@@ -165,8 +165,8 @@ const Home: NextPage = () => {
               />
 
               <p>
-                Das empresas que investiram no design das suas embalagens
-                registraram aumento de vendas
+                Das compras no Ponto de Venda tem a EMBALAGEM como principal
+                fator de decisão.
               </p>
             </div>
 
