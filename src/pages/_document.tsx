@@ -7,7 +7,10 @@ import Document, {
   NextScript,
   Main
 } from 'next/document'
+import parse from 'html-react-parser'
 import { ServerStyleSheet } from 'styled-components'
+
+import { analytics, remarketing } from 'scripts/google'
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -41,6 +44,9 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt">
         <Head>
+          {parse(remarketing)}
+          {parse(analytics)}
+
           <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
