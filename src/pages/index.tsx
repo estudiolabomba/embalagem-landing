@@ -5,8 +5,7 @@ import { toast } from 'react-toastify'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import { Email } from 'lib/smtp'
-import pipedrive from 'services/pipedrive'
+import { api } from 'services/api'
 
 import { Container, Wrapper } from '@styles/pages/Home'
 
@@ -26,31 +25,12 @@ const Home: NextPage = () => {
 
       toast('Enviando...', { type: 'info' })
 
-      await Email.send({
-        Host: 'mail.estudiolabomba.com',
-        Username: 'contato@estudiolabomba.com',
-        Password: 'labomba13',
-        To: 'andre@estudiolabomba.com',
-        From: email,
-        Subject: `E-mail de Contato vindo de ${name}`,
-        Body: `Nome: ${name} <br/>
-              E-mail: ${email} <br/>
-              Telefone: ${phone} <br/>
-              Empresa: ${enterprise} <br/>
-              Porte da Empresa: ${enterpriseSize} <br/>
-              `
-      })
-
-      const person = await pipedrive.post('persons', {
+      await api.post('/mail', {
         name,
-        email: [email],
-        phone: [phone]
-      })
-
-      await pipedrive.post('leads', {
-        title: `[Landing/Embalagem] ${name}`,
-        person_id: person.data.data.id,
-        owner_id: person.data.data.owner_id.id
+        phone,
+        email,
+        enterprise,
+        enterpriseSize
       })
 
       toast('Iremos entrar em contato com você em breve!', { type: 'success' })
@@ -60,6 +40,10 @@ const Home: NextPage = () => {
       setEnterpriseSize('Pequena')
       setPhone('')
       setEmail('')
+    } catch {
+      toast('Não foi possível enviar sua mensagem, tente novamente!', {
+        type: 'error'
+      })
     } finally {
       setFormSending(false)
     }
