@@ -1,9 +1,9 @@
+import 'aos/dist/aos.css'
 import { NextPage } from 'next'
 import React, { FormEvent, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import AOS from 'aos'
-import 'aos/dist/aos.css'
 
 import { api } from 'services/api'
 
@@ -149,8 +149,8 @@ const Home: NextPage = () => {
               />
 
               <p>
-                Das compras no Ponto de Venda tem a EMBALAGEM como principal
-                fator de decisão.
+                Das empresas que investiram no design das suas embalagens
+                registraram <span>AUMENTO DE VENDAS</span>
               </p>
             </div>
 
