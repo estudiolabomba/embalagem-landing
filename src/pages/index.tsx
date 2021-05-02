@@ -1,15 +1,22 @@
 import 'aos/dist/aos.css'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import React, { FormEvent, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import AOS from 'aos'
+import { useRouter } from 'next/router'
 
 import { api } from 'services/api'
 
+import { Stats } from 'components/Stats'
+import { Navigation } from 'components/Navigation'
+import { Testimonials } from 'components/Testimonials'
+
 import { Container, Wrapper } from '@styles/pages/Home'
 
-const Home: NextPage = () => {
+export default function Home() {
+  const { push } = useRouter()
+
   const [name, setName] = useState('')
   const [enterprise, setEnterprise] = useState('')
   const [enterpriseSize, setEnterpriseSize] = useState('Pequena')
@@ -40,6 +47,8 @@ const Home: NextPage = () => {
       setEnterpriseSize('Pequena')
       setPhone('')
       setEmail('')
+
+      push('/obrigado')
     } catch {
       toast('Não foi possível enviar sua mensagem, tente novamente!', {
         type: 'error'
@@ -59,20 +68,7 @@ const Home: NextPage = () => {
     <Wrapper>
       <Container>
         <header>
-          <nav>
-            <a
-              href="http://estudiolabomba.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/logo.svg"
-                alt="Estúdio La.Bomba"
-                width={176}
-                height={30}
-              />
-            </a>
-          </nav>
+          <Navigation />
 
           <div className="full-banner">
             <div className="call" data-aos="fade-right">
@@ -138,51 +134,7 @@ const Home: NextPage = () => {
           </div>
         </header>
 
-        <section className="market-data">
-          <div className="stats">
-            <div data-aos="fade-up">
-              <Image
-                src="/75-sales-percent.svg"
-                alt="75%"
-                width={128}
-                height={128}
-              />
-
-              <p>
-                Das empresas que investiram no design das suas embalagens
-                registraram <span>AUMENTO DE VENDAS</span>
-              </p>
-            </div>
-
-            <div data-aos="fade-up" data-aos-delay="500">
-              <Image
-                src="/81-sales-percent.svg"
-                alt="81%"
-                width={128}
-                height={128}
-              />
-
-              <p>
-                Das compras no Ponto de Venda tem a <span>EMBALAGEM</span> como
-                a principal fator de decisão.
-              </p>
-            </div>
-          </div>
-
-          <div className="phrase">
-            <img src="/lamp.png" alt="Ilustração de Lâmpada" />
-
-            <h2
-              className="text-4xl lg:text-4xl md:text-2xl"
-              data-aos="fade-left"
-              data-aos-delay="800"
-            >
-              Transformamos <br /> <span> Essência</span> e
-              <span> Propósito</span> <br />
-              em valor para marcas
-            </h2>
-          </div>
-        </section>
+        <Stats />
       </Container>
 
       <section className="cases">
@@ -321,76 +273,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section className="testimonials">
-          <h2 className="text-4xl">
-            Confira a reação dos nossos <br /> clientes com seus{' '}
-            <span>Resultados</span>
-          </h2>
-
-          <div className="content">
-            <div className="item" data-aos="fade-up">
-              <div className="person">
-                <Image
-                  src="/lucas.jpeg"
-                  alt="Lucas Redigolo"
-                  width={112}
-                  height={112}
-                />
-
-                <div>
-                  <span>Lucas Redigolo,</span>
-                  <small>
-                    Diretor Comercial, <br />
-                    São Camilo Massas.
-                  </small>
-                </div>
-              </div>
-
-              <div className="text">
-                <p>
-                  “Contratamos o Estúdio La.Bomba para trazer profissionalismo e
-                  posicionar nosso produto à altura da qualidade que entregamos.
-                  Fomos surpreendidos com um Design que traduz todos os valores
-                  da empresa e mostra ao consumidor tudo sobre o produto.{' '}
-                  <strong>
-                    O Redesign da linha de produtos aumentou o faturamento da
-                    empresa em 28% e abriu portas para que grandes redes
-                    varejistas se interessassem pelo nosso produto
-                  </strong>
-                  ”
-                </p>
-              </div>
-            </div>
-
-            <div className="item" data-aos="fade-up" data-aos-delay="500">
-              <div className="person">
-                <Image
-                  src="/alex.jpeg"
-                  alt="Alex Severnini"
-                  width={112}
-                  height={112}
-                />
-
-                <div>
-                  <span>Alex Severnini,</span>
-                  <small>
-                    Buyer, <br />
-                    Triunfo Foods.
-                  </small>
-                </div>
-              </div>
-
-              <div className="text">
-                <p>
-                  “Desenvolvemos até o momento 3 projetos com o Estúdio
-                  La.Bomba. Como definir o Estúdio? Jovens, ousados, dedicados e
-                  super profissionais. Estamos tendo resultados excelentes no
-                  PDV e aceitação do público.”
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Testimonials />
 
         <section className="cta" data-aos="fade-up" data-aos-delay="800">
           <a href="#form">É isso que eu preciso!</a>
@@ -415,4 +298,8 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {}
+  }
+}
