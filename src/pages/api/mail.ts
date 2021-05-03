@@ -9,7 +9,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const transporter = nodemailer.createTransport({
       host: process.env.NEXT_SMTP_HOST,
-      port: 465,
       secure: true,
       auth: {
         user: process.env.NEXT_SMTP_USERNAME,
@@ -31,9 +30,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     transporter.sendMail(mailOption, (err, data) => {
       if (err) {
-        console.log(err)
-      } else {
-        console.log('E-mail enviado!')
+        console.error(err)
+
+        return res.status(500).send('Internal server error.')
       }
     })
 

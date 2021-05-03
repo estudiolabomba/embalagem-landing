@@ -26,8 +26,9 @@ export default function Home() {
   const [formSending, setFormSending] = useState(false)
 
   const handleSubmitForm = async (e: FormEvent) => {
+    e.preventDefault()
+
     try {
-      e.preventDefault()
       setFormSending(true)
 
       toast('Enviando...', { type: 'info' })
