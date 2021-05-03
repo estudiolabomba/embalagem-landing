@@ -1,25 +1,40 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import nodemailer from 'nodemailer'
 
-import { Email } from 'lib/smtp'
 import pipedrive from 'services/pipedrive'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { name, phone, email, enterprise, enterpriseSize } = req.body
 
-    await Email.send({
-      Host: process.env.NEXT_SMTP_HOST,
-      Username: process.env.NEXT_SMTP_USERNAME,
-      Password: process.env.NEXT_SMTP_PASSWORD,
-      To: process.env.NEXT_SMTP_TO,
-      From: email,
-      Subject: `E-mail de Contato vindo de ${name}`,
-      Body: `Nome: ${name} <br/>
-            E-mail: ${email} <br/>
-            Telefone: ${phone} <br/>
-            Empresa: ${enterprise} <br/>
-            Porte da Empresa: ${enterpriseSize} <br/>
-            `
+    const transporter = nodemailer.createTransport({
+      host: process.env.NEXT_SMTP_HOST,
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.NEXT_SMTP_USERNAME,
+        pass: process.env.NEXT_SMTP_PASSWORD
+      }
+    })
+
+    const mailOption = {
+      from: `${email}`,
+      to: `${process.env.NEXT_SMTP_TO}`,
+      subject: `E-mail de Contato de ${name}`,
+      text: `Nome: ${name}
+      E-mail: ${email}
+      Telefone: ${phone}
+      Empresa: ${enterprise}
+      Porte da Empresa: ${enterpriseSize}
+      `
+    }
+
+    transporter.sendMail(mailOption, (err, data) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('E-mail enviado!')
+      }
     })
 
     const person = await pipedrive.post('persons', {
