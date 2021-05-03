@@ -17,6 +17,7 @@ export const Container = styled.div`
     margin-top: 5rem;
 
     aside {
+      width: 100%;
       max-width: 50vw;
       text-align: center;
 
@@ -60,6 +61,21 @@ export const Container = styled.div`
 
         &:hover {
           opacity: 0.7;
+        }
+      }
+    }
+
+    @media (max-width: 540px) {
+      flex-direction: column;
+
+      aside {
+        max-width: 100%;
+        h1 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 1.25rem;
+          max-width: 100%;
         }
       }
     }
