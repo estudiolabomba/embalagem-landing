@@ -19,7 +19,7 @@ export default function Home() {
 
   const [name, setName] = useState('')
   const [enterprise, setEnterprise] = useState('')
-  const [enterpriseSize, setEnterpriseSize] = useState('Pequena')
+  const [enterpriseSize, setEnterpriseSize] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
@@ -27,6 +27,26 @@ export default function Home() {
 
   const handleSubmitForm = async (e: FormEvent) => {
     e.preventDefault()
+
+    if (!name) {
+      return toast('Seu nome é obrigatório', { type: 'error' })
+    }
+
+    if (!enterprise) {
+      return toast('Sua empresa é obrigatória', { type: 'error' })
+    }
+
+    if (!enterpriseSize) {
+      return toast('O tamanho da sua empresa é obrigatório', { type: 'error' })
+    }
+
+    if (!phone) {
+      return toast('Seu telefone é obrigatório', { type: 'error' })
+    }
+
+    if (!email) {
+      return toast('Seu email é obrigatório', { type: 'error' })
+    }
 
     try {
       setFormSending(true)
@@ -41,13 +61,13 @@ export default function Home() {
         enterpriseSize
       })
 
-      toast('Iremos entrar em contato com você em breve!', { type: 'success' })
-
       setName('')
       setEnterprise('')
       setEnterpriseSize('Pequena')
       setPhone('')
       setEmail('')
+
+      toast('Iremos entrar em contato com você em breve!', { type: 'success' })
 
       push('/obrigado')
     } catch {
