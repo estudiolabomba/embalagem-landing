@@ -155,6 +155,7 @@ export default function Home() {
                 id="name-input"
                 placeholder="Nome completo"
                 onChange={val => setName(val.target.value)}
+                required
               />
             </fieldset>
 
@@ -166,6 +167,7 @@ export default function Home() {
                 id="enterprise-input"
                 placeholder="Qual o nome da sua empresa?"
                 onChange={val => setEnterprise(val.target.value)}
+                required
               />
             </fieldset>
 
@@ -219,6 +221,7 @@ export default function Home() {
                 id="phone-input"
                 placeholder="(xx) 90000-0000"
                 onChange={val => setPhone(val.target.value)}
+                required
               />
             </fieldset>
 
@@ -230,6 +233,7 @@ export default function Home() {
                 id="email-input"
                 placeholder="E-mail profissional"
                 onChange={val => setEmail(val.target.value)}
+                required
               />
             </fieldset>
 
