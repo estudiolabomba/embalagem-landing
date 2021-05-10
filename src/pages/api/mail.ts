@@ -17,8 +17,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     const mailOption = {
-      from: `${email}`,
-      to: `${process.env.NEXT_SMTP_TO}`,
+      from: `${name} <${email}>`,
+      to: process.env.NEXT_SMTP_TO,
       subject: `E-mail de Contato de ${name}`,
       text: `Nome: ${name}
       E-mail: ${email}
@@ -48,7 +48,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       owner_id: person.data.data.owner_id.id
     })
 
-    return res.status(200).json({})
+    return res
+      .status(200)
+      .send(`E-mail enviado para: ${process.env.NEXT_SMTP_TO}`)
   } else {
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method not allowed.')
