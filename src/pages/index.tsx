@@ -13,6 +13,7 @@ import { Navigation } from 'components/Navigation'
 import { Testimonials } from 'components/Testimonials'
 
 import { Container, Wrapper } from '@styles/pages/Home'
+import pipedrive from 'services/pipedrive'
 
 export default function Home() {
   const { push } = useRouter()
